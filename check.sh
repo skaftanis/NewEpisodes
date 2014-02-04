@@ -56,9 +56,16 @@ if [ $COUNT -ne 0 ]; then
 	zenity --question --text="Next Episode of $VCNAME is $NEXT?"
 	if [ $? = 0 ]; then
 		#if next episode guess is correct change it from names.txt
-		cat $VCNAME | sed -e "s/$VCCODE/$NEXT/" > next.txt
-		cat next.txt > $VCNAME
-		rm next.txt
+		zenity --question --text="Do you want to set it for the next check?"
+		if [ $? = 0 ]; then
+			cat $VCNAME | sed -e "s/$VCCODE/$NEXT/" > next.txt
+			cat next.txt > $VCNAME
+			rm next.txt
+		fi
+		else
+			echo o	
+		fi
+
 	else 
 		NEXT=`zenity --entry --title="Set next episode" --text="Type the name of the next episode. Leave the field blank if there is not other episode"`
 		cat $VCNAME | sed -e "s/$VCCODE/$NEXT/" > next.txt
@@ -77,6 +84,7 @@ if [ $COUNT -ne 0 ]; then
 					#TODO VCDODE στην τρίτη γραμμή 	
 				fi
 		fi
+	   
 	fi
 fi
 if [ $COUNT -eq 0 ]; then
