@@ -61,7 +61,6 @@ if [ $COUNT -ne 0 ]; then
 			cat $VCNAME | sed -e "s/$VCCODE/$NEXT/" > next.txt
 			cat next.txt > $VCNAME
 			rm next.txt
-		fi
 		else
 			echo o	
 		fi
